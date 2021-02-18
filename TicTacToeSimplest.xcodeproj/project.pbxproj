@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9B8A01D25DEDC9200065F9A /* Snoopy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9B8A01A25DEDC9200065F9A /* Snoopy.ttf */; };
+		B9B8A01E25DEDC9200065F9A /* Azuki.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9B8A01B25DEDC9200065F9A /* Azuki.ttf */; };
+		B9B8A01F25DEDC9200065F9A /* gooddog.otf in Resources */ = {isa = PBXBuildFile; fileRef = B9B8A01C25DEDC9200065F9A /* gooddog.otf */; };
 		B9C1E7A125DDD25D00C08D4F /* TicTacToeSimplestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1E7A025DDD25D00C08D4F /* TicTacToeSimplestApp.swift */; };
 		B9C1E7A325DDD25D00C08D4F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C1E7A225DDD25D00C08D4F /* ContentView.swift */; };
 		B9C1E7A525DDD26400C08D4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C1E7A425DDD26400C08D4F /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9B8A01A25DEDC9200065F9A /* Snoopy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Snoopy.ttf; sourceTree = "<group>"; };
+		B9B8A01B25DEDC9200065F9A /* Azuki.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Azuki.ttf; sourceTree = "<group>"; };
+		B9B8A01C25DEDC9200065F9A /* gooddog.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gooddog.otf; sourceTree = "<group>"; };
 		B9C1E79D25DDD25D00C08D4F /* TicTacToeSimplest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToeSimplest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C1E7A025DDD25D00C08D4F /* TicTacToeSimplestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeSimplestApp.swift; sourceTree = "<group>"; };
 		B9C1E7A225DDD25D00C08D4F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +41,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B9B8A01625DED9E900065F9A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B9B8A01B25DEDC9200065F9A /* Azuki.ttf */,
+				B9B8A01C25DEDC9200065F9A /* gooddog.otf */,
+				B9B8A01A25DEDC9200065F9A /* Snoopy.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		B9C1E79425DDD25D00C08D4F = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +76,7 @@
 				B9C1E7A925DDD26400C08D4F /* Info.plist */,
 				B9C1E7A625DDD26400C08D4F /* Preview Content */,
 				B9CB19A725DEA1220050C28B /* Game.swift */,
+				B9B8A01625DED9E900065F9A /* Fonts */,
 			);
 			path = TicTacToeSimplest;
 			sourceTree = "<group>";
@@ -130,7 +147,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C1E7A825DDD26400C08D4F /* Preview Assets.xcassets in Resources */,
+				B9B8A01F25DEDC9200065F9A /* gooddog.otf in Resources */,
+				B9B8A01E25DEDC9200065F9A /* Azuki.ttf in Resources */,
 				B9C1E7A525DDD26400C08D4F /* Assets.xcassets in Resources */,
+				B9B8A01D25DEDC9200065F9A /* Snoopy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

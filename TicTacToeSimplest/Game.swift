@@ -6,17 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Game: ObservableObject {
     @Published var grid: [String] = []
+    @Published var result: String = ""
     
     private static let x = "X"
     private static let o = "O"
     private static let blank = ""
     
-    private let firstRow: IndexSet =      [0,1,2]
-    private let secondRow: IndexSet =     [3,4,5]
-    private let thirdRow: IndexSet =      [6,7,8]
+    private let firstLine: IndexSet =     [0,1,2]
+    private let secondLine: IndexSet =    [3,4,5]
+    private let thirdLine: IndexSet =     [6,7,8]
     private let firstCol: IndexSet =      [0,3,6]
     private let secondCol: IndexSet =     [1,4,7]
     private let thirdCol: IndexSet =      [2,5,8]
@@ -25,9 +27,10 @@ class Game: ObservableObject {
     
     private var choices: [Bool: String] = [:]
     private var turn: Bool = Bool.random()
-    private var marks: Int = 0
+    private var marksCount: Int = 0
+    private var isEndGame = false
         
-    init() {
+    init() {        
         initGame()
     }
     
@@ -37,36 +40,45 @@ class Game: ObservableObject {
                 Self.blank, Self.blank, Self.blank]
         turn = Bool.random()
         choices = [false: Self.x, true: Self.o]
-        marks = 0
+        marksCount = 0
+        isEndGame = false
+        result = ""
     }
     
     func playAt(position: Int) {
-        if grid[position] == Self.blank {
-            marks += 1
+        if grid[position] == Self.blank && !isEndGame {
+            marksCount += 1
             grid[position] = choices[turn]!
             
-            if isVictoryOf(mark: choices[turn]!) {
-                print("\(choices[turn]!) ganhou!")
+            isEndGame = marksCount >= 9 || isVictoryOf(mark: choices[turn]!)
+            print(isEndGame)
+            
+            if isEndGame {
+                if marksCount >= 9 {
+                    result = "Ouch! It is a Draw."
+                } else {
+                    result = "\(choices[turn]!) is winner!"
+                }
             } else {
                 turn.toggle()
             }
-        }        
+        }
     }
     
     private func isVictoryOf(mark: String) -> Bool {
-        return marks >= 5 &&
-            verifyIf(mark: mark, isIn: firstRow) ||
-            verifyIf(mark: mark, isIn: secondRow) ||
-            verifyIf(mark: mark, isIn: thirdRow) ||
-            verifyIf(mark: mark, isIn: firstCol) ||
-            verifyIf(mark: mark, isIn: secondCol) ||
-            verifyIf(mark: mark, isIn: thirdCol) ||
-            verifyIf(mark: mark, isIn: diagonalLeft) ||
-            verifyIf(mark: mark, isIn: diagonalRight)
+        return marksCount >= 5 &&
+            isRow(of: mark, in: firstLine) ||
+            isRow(of: mark, in: secondLine) ||
+            isRow(of: mark, in: thirdLine) ||
+            isRow(of: mark, in: firstCol) ||
+            isRow(of: mark, in: secondCol) ||
+            isRow(of: mark, in: thirdCol) ||
+            isRow(of: mark, in: diagonalLeft) ||
+            isRow(of: mark, in: diagonalRight)
         
     }
     
-    private func verifyIf(mark: String, isIn array: IndexSet) -> Bool {
+    private func isRow(of mark: String, in array: IndexSet) -> Bool {
         return array.map { grid[$0] }.allSatisfy { $0 == mark }
     }
 }
