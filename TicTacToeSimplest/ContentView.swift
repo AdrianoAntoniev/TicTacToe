@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    private var grid: [String] = []
-    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    @ObservedObject var game = Game()
+    
+    private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         LazyVGrid(columns: gridItemLayout, spacing: 50) {
@@ -19,16 +20,16 @@ struct ContentView: View {
                         .frame(width: 100, height: 100)
                         .foregroundColor(.yellow)
                     
-                    Text(Mark.o)
+                    Text(game.grid[index])
                         .foregroundColor(.red)
                         .font(.largeTitle)
                         .fontWeight(.black)
-                        
                 }
-                
+                .onTapGesture {
+                    game.playAt(position: index)
+                }
             }
-        }
-        
+        }        
     }
 }
 
