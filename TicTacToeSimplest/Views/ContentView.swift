@@ -15,6 +15,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 50) {
+                GameTextView(content: "Tic Tac Toe", size: 50, color: .green)
+                    .frame(width: 200, height: 10, alignment: .center)
+                    .shadow(radius: 10)
+                
                 LazyVGrid(columns: gridItemLayout, spacing: 50) {
                     ForEach(0..<9) { index in
                         ZStack {
@@ -23,14 +27,14 @@ struct ContentView: View {
                     }
                 }
                 
-                GameTextView(content: game.result, size: 30)
-                    .frame(width: 100, height: 100, alignment: .center)                
+                GameTextView(content: game.result, size: 30, color: .orange)
+                    .frame(width: 100, height: 100, alignment: .center)
             }
-            .navigationBarTitle(Text("Tic Tac Toe"))
+            //.navigationBarTitle(Text("Tic Tac Toe"))
             .navigationBarItems(trailing: Button(action: {                
                 game.initGame()
             }, label: {
-                GameTextView(content: "New Game!", size: 20)
+                GameTextView(content: "New Game!", size: 20, color: .purple)
             }))
         }
     }
