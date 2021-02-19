@@ -25,13 +25,13 @@ struct SpaceView: View {
                 .shadow(color: .gray, radius: 5)
                 .onTapGesture {
                     withAnimation {
-                        game.playAt(position: index)                        
+                        game.playAt(position: index)
                         degrees += 180                                                
                     }   
                 }
             
             Text(game.grid[index])
-                .foregroundColor(game.grid[index] == "X" ? .red : .blue)
+                .foregroundColor(game.grid[index] == game.getRandomMark() ? .red : .blue)
                 .font(.largeTitle)
                 .fontWeight(.black)
                 .shadow(radius: 5)
@@ -44,6 +44,6 @@ struct SpaceView: View {
 
 struct SpaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceView(index: -1)
+        SpaceView(index: 0)
     }
 }

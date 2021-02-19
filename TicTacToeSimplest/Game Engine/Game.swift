@@ -12,11 +12,11 @@ class Game: ObservableObject {
     @Published var grid: [String] = []
     @Published var result: String = ""
     
-    private static let instance = Game()
-    
     private static let x = "X"
     private static let o = "O"
-    private static let blank = ""
+    private static let blank = ""    
+    
+    private static let instance = Game()
     
     private let firstLine: IndexSet =     [0,1,2]
     private let secondLine: IndexSet =    [3,4,5]
@@ -38,6 +38,10 @@ class Game: ObservableObject {
     
     static func getInstance() -> Game {
         return instance
+    }
+    
+    func getRandomMark() -> String {
+        return [Self.x, Self.o].randomElement()!
     }
     
     func initGame() {
