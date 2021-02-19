@@ -24,7 +24,7 @@ struct ContentView: View {
                 }
                 
                 GameTextView(content: game.result, size: 30)
-                    .frame(width: 100, height: 100, alignment: .center)
+                    .frame(width: 100, height: 100, alignment: .center)                
             }
             .navigationBarTitle(Text("Tic Tac Toe"))
             .navigationBarItems(trailing: Button(action: {                

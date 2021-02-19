@@ -31,6 +31,8 @@ class Game: ObservableObject {
     private var turn: Bool = Bool.random()
     private var marksCount: Int = 0
     private var isEndGame = false
+    
+    private var randomMark: String = ""
         
     private init() {        
         initGame()
@@ -41,7 +43,7 @@ class Game: ObservableObject {
     }
     
     func getRandomMark() -> String {
-        return [Self.x, Self.o].randomElement()!
+        return randomMark
     }
     
     func initGame() {
@@ -53,6 +55,7 @@ class Game: ObservableObject {
         marksCount = 0
         isEndGame = false
         result = ""
+        randomMark = [Self.x, Self.o].randomElement()!
     }
     
     func playAt(position: Int) {
