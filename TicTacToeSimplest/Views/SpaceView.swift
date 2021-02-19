@@ -21,7 +21,7 @@ struct SpaceView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 100, height: 100)
-                .foregroundColor(.yellow)
+                .foregroundColor(game.victoryRow.contains(index) ? .orange : .yellow)
                 .shadow(color: .gray, radius: 5)
                 .onTapGesture {
                     withAnimation {
@@ -31,7 +31,7 @@ struct SpaceView: View {
                 }
             
             Text(game.grid[index])
-                .foregroundColor(game.grid[index] == game.getRandomMark() ? .red : .blue)
+                .foregroundColor(game.grid[index] == game.getRandomMark() ? .red : .blue)                
                 .font(.largeTitle)
                 .fontWeight(.black)
                 .shadow(radius: 5)

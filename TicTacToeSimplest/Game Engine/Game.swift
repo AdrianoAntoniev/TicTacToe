@@ -11,6 +11,7 @@ import SwiftUI
 class Game: ObservableObject {
     @Published var grid: [String] = []
     @Published var result: String = ""
+    @Published var victoryRow: IndexSet = [-1, -1, -1]
     
     private static let x = "X"
     private static let o = "O"
@@ -56,6 +57,7 @@ class Game: ObservableObject {
         isEndGame = false
         result = ""
         randomMark = [Self.x, Self.o].randomElement()!
+        victoryRow = [-1, -1, -1]
     }
     
     func playAt(position: Int) {
@@ -101,6 +103,12 @@ class Game: ObservableObject {
     }
     
     private func isRow(of mark: String, in array: IndexSet) -> Bool {
-        return array.map { grid[$0] }.allSatisfy { $0 == mark }
+        let victory = array.map { grid[$0] }.allSatisfy { $0 == mark }
+        
+        if victory {
+            victoryRow = array
+        }
+        
+        return victory
     }
 }

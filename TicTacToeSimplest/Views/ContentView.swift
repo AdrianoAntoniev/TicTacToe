@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var game = Game.getInstance()
+    @ObservedObject var game = Game.getInstance()    
     
     private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -27,14 +27,13 @@ struct ContentView: View {
                     }
                 }
                 
-                GameTextView(content: game.result, size: 30, color: .orange)
+                GameTextView(content: game.result, size: 40, color: .yellow)
                     .frame(width: 100, height: 100, alignment: .center)
             }
-            //.navigationBarTitle(Text("Tic Tac Toe"))
             .navigationBarItems(trailing: Button(action: {                
                 game.initGame()
             }, label: {
-                GameTextView(content: "New Game!", size: 20, color: .purple)
+                GameTextView(content: "New Game!", size: 25, color: .purple)
             }))
         }
     }
