@@ -8,42 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var game = Game()
+    @ObservedObject var game = Game.getInstance()
     
     private let gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 50) {
                 LazyVGrid(columns: gridItemLayout, spacing: 50) {
                     ForEach(0..<9) { index in
                         ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 100, height: 100)
-                                .foregroundColor(.yellow)
-                            
-                            Text(game.grid[index])
-                                .foregroundColor(.red)
-                                .font(.largeTitle)
-                                .fontWeight(.black)
-                            
-                            Spacer()
-                        }
-                        .onTapGesture {
-                            game.playAt(position: index)
+                            SpaceView(index: index)
                         }
                     }
                 }
                 
-                Text(game.result)
-                    .font(.custom("gooddog", size: 30))
+                GameTextView(content: game.result, size: 30)
+                    .frame(width: 100, height: 100, alignment: .center)
             }
             .navigationBarTitle(Text("Tic Tac Toe"))
             .navigationBarItems(trailing: Button(action: {                
                 game.initGame()
             }, label: {
-                Text("New Game!")
-                    .font(.custom("gooddog", size: 20))
+                GameTextView(content: "New Game!", size: 20)
             }))
         }
     }

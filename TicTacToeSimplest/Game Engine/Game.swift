@@ -12,6 +12,8 @@ class Game: ObservableObject {
     @Published var grid: [String] = []
     @Published var result: String = ""
     
+    private static let instance = Game()
+    
     private static let x = "X"
     private static let o = "O"
     private static let blank = ""
@@ -30,8 +32,12 @@ class Game: ObservableObject {
     private var marksCount: Int = 0
     private var isEndGame = false
         
-    init() {        
+    private init() {        
         initGame()
+    }
+    
+    static func getInstance() -> Game {
+        return instance
     }
     
     func initGame() {
@@ -49,20 +55,29 @@ class Game: ObservableObject {
         if grid[position] == Self.blank && !isEndGame {
             marksCount += 1
             grid[position] = choices[turn]!
+                                                
+            isEndGame = isEndOfGame()
             
-            isEndGame = marksCount >= 9 || isVictoryOf(mark: choices[turn]!)
-            print(isEndGame)
-            
-            if isEndGame {
-                if marksCount >= 9 {
-                    result = "Ouch! It is a Draw."
-                } else {
-                    result = "\(choices[turn]!) is winner!"
-                }
-            } else {
-                turn.toggle()
+            if !isEndGame {
+               turn.toggle()
             }
         }
+    }
+    
+    private func isEndOfGame() -> Bool {
+        let isDraw = marksCount == 9 && !isVictoryOf(mark: choices[turn]!)
+        let isWinner = (marksCount < 9 && isVictoryOf(mark: choices[turn]!)) ||
+                            (marksCount == 9 && isVictoryOf(mark: choices[turn]!))
+                        
+        if isDraw {
+            result = "Ouch! It is a Draw."
+        } else if isWinner {
+            result = "'\(choices[turn]!)' is winner!"
+        } else {
+            result = ""
+        }
+        
+        return isDraw || isWinner
     }
     
     private func isVictoryOf(mark: String) -> Bool {
